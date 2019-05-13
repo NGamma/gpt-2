@@ -16,7 +16,7 @@ from load_dataset import load_dataset, Sampler
 from accumulate import AccumulatingOptimizer
 import memory_saving_gradients
 
-CHECKPOINT_DIR = '../drive/My\ Drive/checkpoint'
+CHECKPOINT_DIR = 'drive/My\ Drive/checkpoint'
 SAMPLE_DIR = 'samples'
 
 
@@ -158,7 +158,7 @@ def main():
                            for _ in range(args.val_batch_count)]
 
         counter = 1
-        counter_path = os.path.join(CHECKPOINT_DIR, args.run_name, 'counter')
+        counter_path = os.path.join(os.pardir, CHECKPOINT_DIR, args.run_name, 'counter')
         if os.path.exists(counter_path):
             # Load the step number if we're resuming a run
             # Add 1 so we don't immediately try to save again
@@ -166,14 +166,14 @@ def main():
                 counter = int(fp.read()) + 1
 
         def save():
-            maketree(os.path.join(CHECKPOINT_DIR, args.run_name))
+            maketree(os.path.join(os.pardir, CHECKPOINT_DIR, args.run_name))
             print(
                 'Saving',
-                os.path.join(CHECKPOINT_DIR, args.run_name,
+                os.path.join(os.pardir, CHECKPOINT_DIR, args.run_name,
                              'model-{}').format(counter))
             saver.save(
                 sess,
-                os.path.join(CHECKPOINT_DIR, args.run_name, 'model'),
+                os.path.join(os.pardir, CHECKPOINT_DIR, args.run_name, 'model'),
                 global_step=counter)
             with open(counter_path, 'w') as fp:
                 fp.write(str(counter) + '\n')
