@@ -119,7 +119,7 @@ def main():
             summary_loss = tf.summary.scalar('loss', loss)
 
         summary_log = tf.summary.FileWriter(
-            os.path.join(CHECKPOINT_DIR, args.run_name))
+            os.path.join(os.pardir, CHECKPOINT_DIR, args.run_name))
 
         saver = tf.train.Saver(
             var_list=all_vars,
@@ -129,7 +129,7 @@ def main():
 
         if args.restore_from == 'latest':
             ckpt = tf.train.latest_checkpoint(
-                os.path.join(CHECKPOINT_DIR, args.run_name))
+                os.path.join(os.pardir, CHECKPOINT_DIR, args.run_name))
             if ckpt is None:
                 # Get fresh GPT weights if new run.
                 ckpt = tf.train.latest_checkpoint(
