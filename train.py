@@ -177,6 +177,7 @@ def main():
                 global_step=counter)
             with open(counter_path, 'w') as fp:
                 fp.write(str(counter) + '\n')
+            !cp -r /content/gpt-2/checkpoint/ /content/drive/My\ Drive/checkpoint/
 
         def generate_samples():
             print('Generating samples...')
