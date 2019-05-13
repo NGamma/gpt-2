@@ -16,7 +16,7 @@ from load_dataset import load_dataset, Sampler
 from accumulate import AccumulatingOptimizer
 import memory_saving_gradients
 
-CHECKPOINT_DIR = 'checkpoint'
+CHECKPOINT_DIR = '/content/drive/My\ Drive/checkpoint/'
 SAMPLE_DIR = 'samples'
 
 
@@ -39,7 +39,7 @@ parser.add_argument('--run_name', type=str, default='run1', help='Run id. Name o
 parser.add_argument('--sample_every', metavar='N', type=int, default=100, help='Generate samples every N steps')
 parser.add_argument('--sample_length', metavar='TOKENS', type=int, default=1023, help='Sample this many tokens')
 parser.add_argument('--sample_num', metavar='N', type=int, default=1, help='Generate this many samples')
-parser.add_argument('--save_every', metavar='N', type=int, default=1000, help='Write a checkpoint every N steps')
+parser.add_argument('--save_every', metavar='N', type=int, default=100, help='Write a checkpoint every N steps')
 
 parser.add_argument('--val_dataset', metavar='PATH', type=str, default=None, help='Dataset for validation loss, defaults to --dataset.')
 parser.add_argument('--val_batch_size', metavar='SIZE', type=int, default=2, help='Batch size for validation.')
@@ -177,7 +177,7 @@ def main():
                 global_step=counter)
             with open(counter_path, 'w') as fp:
                 fp.write(str(counter) + '\n')
-            !cp -r /content/gpt-2/checkpoint/ /content/drive/My\ Drive/checkpoint/
+            #!cp -r /content/gpt-2/checkpoint/ /content/drive/My\ Drive/checkpoint/
 
         def generate_samples():
             print('Generating samples...')
