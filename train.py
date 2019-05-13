@@ -16,7 +16,7 @@ from load_dataset import load_dataset, Sampler
 from accumulate import AccumulatingOptimizer
 import memory_saving_gradients
 
-CHECKPOINT_DIR = '/content/drive/My\ Drive/checkpoint/'
+CHECKPOINT_DIR = 'content/drive/My\ Drive/checkpoint'
 SAMPLE_DIR = 'samples'
 
 
